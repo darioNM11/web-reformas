@@ -27,6 +27,7 @@
       <ul class="nav-menu" id="navMenu">
         <li><a href="#inicio" class="nav-link">Inicio</a></li>
         <li><a href="#servicios" class="nav-link">Servicios</a></li>
+        <li><a href="#presupuesto" class="nav-link">Presupuesto</a></li>
         <li><a href="#proyectos" class="nav-link">Proyectos</a></li>
         <li><a href="#testimonios" class="nav-link">Testimonios</a></li>
         <li><a href="#contacto" class="nav-link">Contacto</a></li>
@@ -83,6 +84,61 @@
           <p>Instalaciones nuevas, certificaciones y adaptación a normativa vigente.</p>
         </article>
       </div>
+    </div>
+  </section>
+
+  <!-- ============ PRESUPUESTO ============ -->
+  <section class="section budget" id="presupuesto">
+    <div class="container">
+      <header class="section-header">
+        <h2>Calcula tu presupuesto</h2>
+        <p>Estimación orientativa en menos de un minuto. Sin compromiso.</p>
+      </header>
+      <form class="budget-form" id="budgetForm" novalidate>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="b-tipo">Tipo de reforma</label>
+            <select id="b-tipo" required>
+              <option value="">Selecciona una opción</option>
+              <option value="integral">Reforma integral</option>
+              <option value="bano">Reforma de baño</option>
+              <option value="cocina">Reforma de cocina</option>
+              <option value="salon">Reforma de salón</option>
+              <option value="terraza">Reforma de terraza</option>
+            </select>
+            <small class="error-msg" id="b-tipoError"></small>
+          </div>
+          <div class="form-field">
+            <label for="b-m2">Superficie (m²)</label>
+            <input type="number" id="b-m2" min="1" step="1" placeholder="Ej. 60" required />
+            <small class="error-msg" id="b-m2Error"></small>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="b-calidad">Calidad de acabados</label>
+          <select id="b-calidad" required>
+            <option value="basica">Básica</option>
+            <option value="media" selected>Media</option>
+            <option value="alta">Alta</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <span class="form-label">Extras</span>
+          <div class="budget-extras">
+            <label><input type="checkbox" value="fontaneria" /> Fontanería nueva</label>
+            <label><input type="checkbox" value="electricidad" /> Electricidad nueva</label>
+            <label><input type="checkbox" value="pintura" /> Pintura completa</label>
+            <label><input type="checkbox" value="demolicion" /> Demolición y retirada</label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Calcular estimación</button>
+        <div class="budget-result" id="budgetResult" hidden aria-live="polite">
+          <p class="budget-result-label">Estimación aproximada</p>
+          <p class="budget-result-value" id="budgetValue">—</p>
+          <p class="budget-result-note">Precio orientativo. El presupuesto final se ajusta tras visita técnica. Sin compromiso.</p>
+          <button type="button" class="btn btn-ghost btn-block" id="budgetUseBtn">Solicitar presupuesto con esta estimación</button>
+        </div>
+      </form>
     </div>
   </section>
 
@@ -166,10 +222,17 @@
             <option>Reforma integral</option>
             <option>Reforma de baño</option>
             <option>Reforma de cocina</option>
+            <option>Reforma de salón</option>
+            <option>Reforma de terraza</option>
             <option>Fontanería / Electricidad</option>
             <option>Otro</option>
           </select>
           <small class="error-msg" id="reformaError"></small>
+        </div>
+        <div class="form-field">
+          <label for="presupuesto_estimado">Presupuesto estimado (€)</label>
+          <input type="text" id="presupuesto_estimado" name="presupuesto_estimado" placeholder="Calcula tu presupuesto arriba" readonly />
+          <small class="form-hint">Se rellena automáticamente desde la calculadora.</small>
         </div>
         <div class="form-field">
           <label for="message">Mensaje</label>

@@ -210,6 +210,103 @@ async function loadProjects() {
 
 loadProjects();
 
+/* ===== Calculadora de presupuesto ===== */
+const BUDGET_RATES = {
+  integral: { basica: 450, media: 650, alta: 900 },
+  bano: { basica: 600, media: 850, alta: 1200 },
+  cocina: { basica: 700, media: 950, alta: 1300 },
+  salon: { basica: 300, media: 450, alta: 650 },
+  terraza: { basica: 250, media: 400, alta: 600 }
+};
+const BUDGET_EXTRAS = {
+  fontaneria: 1500,
+  electricidad: 1800,
+  pintura: 25,        // por m²
+  demolicion: 15      // por m²
+};
+let lastBudgetEstimate = null;
+
+const budgetForm = document.getElementById('budgetForm');
+const budgetResult = document.getElementById('budgetResult');
+const budgetValue = document.getElementById('budgetValue');
+const budgetUseBtn = document.getElementById('budgetUseBtn');
+
+function showErrorBudget(id, msg) { const el = document.getElementById(id); if (el) el.textContent = msg; }
+function clearBudgetErrors() { ['b-tipoError','b-m2Error'].forEach(id => showErrorBudget(id, '')); }
+
+function calculateBudget() {
+  clearBudgetErrors();
+  const tipo = document.getElementById('b-tipo').value;
+  const m2 = parseFloat(document.getElementById('b-m2').value);
+  const calidad = document.getElementById('b-calidad').value;
+  const extras = Array.from(budgetForm.querySelectorAll('.budget-extras input:checked')).map(i => i.value);
+
+  let ok = true;
+  if (!tipo) { showErrorBudget('b-tipoError', 'Selecciona un tipo de reforma.'); ok = false; }
+  if (!m2 || m2 <= 0) { showErrorBudget('b-m2Error', 'Introduce una superficie válida.'); ok = false; }
+  if (!ok) return;
+
+  const rate = BUDGET_RATES[tipo][calidad];
+  const base = m2 * rate;
+  let extrasTotal = 0;
+  extras.forEach(e => {
+    if (e === 'pintura' || e === 'demolicion') extrasTotal += BUDGET_EXTRAS[e] * m2;
+    else extrasTotal += BUDGET_EXTRAS[e];
+  });
+  const total = base + extrasTotal;
+  const low = Math.round(total * 0.9);
+  const high = Math.round(total * 1.1);
+
+  lastBudgetEstimate = { tipo, m2, calidad, extras, total, low, high };
+  budgetValue.textContent = `${low.toLocaleString('es-ES')} € – ${high.toLocaleString('es-ES')} €`;
+  budgetResult.hidden = false;
+  budgetResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+budgetForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  calculateBudget();
+});
+
+budgetUseBtn.addEventListener('click', () => {
+  if (!lastBudgetEstimate) return;
+  const { tipo, m2, calidad, extras, low, high } = lastBudgetEstimate;
+  const tipoLabel = document.querySelector(`#b-tipo option[value="${tipo}"]`).textContent;
+  const calidadLabel = document.querySelector(`#b-calidad option[value="${calidad}"]`).textContent;
+  const extrasLabel = extras.length ? extras.join(', ') : 'ninguno';
+  const resumen = `Estimación de presupuesto: ${tipoLabel}, ${m2} m², calidad ${calidadLabel}, extras: ${extrasLabel}. Rango estimado: ${low.toLocaleString('es-ES')} € – ${high.toLocaleString('es-ES')} €.`;
+
+  const estField = document.getElementById('presupuesto_estimado');
+  if (estField) estField.value = `${low.toLocaleString('es-ES')} € – ${high.toLocaleString('es-ES')} €`;
+  const tipoMap = {
+    integral: 'Reforma integral',
+    bano: 'Reforma de baño',
+    cocina: 'Reforma de cocina',
+    salon: 'Reforma de salón',
+    terraza: 'Reforma de terraza'
+  };
+  const reformaSelect = document.getElementById('reforma');
+  if (reformaSelect && tipoMap[tipo]) reformaSelect.value = tipoMap[tipo];
+  const msgField = document.getElementById('message');
+  if (msgField) msgField.value = resumen;
+  const contact = document.getElementById('contacto');
+  if (contact) contact.scrollIntoView({ behavior: 'smooth' });
+  const nameField = document.getElementById('name');
+  if (nameField) nameField.focus();
+});
+
+/* ===== Campo presupuesto estimado: click vuelve a la calculadora ===== */
+const estFieldGlobal = document.getElementById('presupuesto_estimado');
+if (estFieldGlobal) {
+  estFieldGlobal.style.cursor = 'pointer';
+  estFieldGlobal.addEventListener('click', () => {
+    const calc = document.getElementById('presupuesto');
+    if (calc) calc.scrollIntoView({ behavior: 'smooth' });
+    const first = document.getElementById('b-tipo');
+    if (first) first.focus();
+  });
+}
+
 /* ===== Validación formulario ===== */
 const form = document.getElementById('contactForm');
 const statusEl = document.getElementById('formStatus');
