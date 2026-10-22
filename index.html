@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reformas Joaquín — Reformas Integrales de Viviendas y Locales</title>
+  <meta name="description" content="Reformas Joaquín: reformas integrales de viviendas y locales con garantía por contrato. Presupuesto sin compromiso. Profesionales cualificados." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ============ NAVBAR ============ -->
+  <header class="site-header" id="top">
+    <nav class="navbar container" aria-label="Navegación principal">
+      <a href="#top" class="logo" aria-label="Reformas Joaquín inicio">
+        <span class="logo-mark">RJ</span>
+        <span class="logo-text">Reformas<span class="logo-accent"> Joaquín</span></span>
+      </a>
+
+      <a href="tel:+34912345678" class="btn btn-primary nav-cta-mobile" aria-label="Pedir presupuesto">Pedir Presupuesto</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#inicio" class="nav-link">Inicio</a></li>
+        <li><a href="#servicios" class="nav-link">Servicios</a></li>
+        <li><a href="#proyectos" class="nav-link">Proyectos</a></li>
+        <li><a href="#testimonios" class="nav-link">Testimonios</a></li>
+        <li><a href="#contacto" class="nav-link">Contacto</a></li>
+        <li><a href="tel:+34912345678" class="btn btn-primary nav-cta">Pedir Presupuesto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="inicio">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="container hero-content">
+      <span class="eyebrow">Reformas integrales · Barcelona y alrededores</span>
+      <h1>Transformamos tu vivienda o local en el espacio que imaginas</h1>
+      <p class="hero-sub">Reformas integrales con acabados de calidad, plazos garantizados y un único interlocutor. Sin sorpresas, sin estrés: solo resultados.</p>
+      <div class="hero-actions">
+        <a href="#contacto" class="btn btn-primary btn-lg">Solicitar Presupuesto Gratis</a>
+        <a href="tel:+34912345678" class="btn btn-ghost btn-lg">📞 Llamar ahora</a>
+      </div>
+      <ul class="hero-trust">
+        <li>✓ Presupuesto sin compromiso</li>
+        <li>✓ Garantía por contrato</li>
+        <li>✓ Profesionales cualificados</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ SERVICIOS ============ -->
+  <section class="section services" id="servicios">
+    <div class="container">
+      <header class="section-header">
+        <h2>Servicios destacados</h2>
+        <p>Soluciones completas para tu hogar o negocio, gestionadas de principio a fin.</p>
+      </header>
+      <div class="services-grid">
+        <article class="service-card">
+          <div class="service-icon" aria-hidden="true">🏠</div>
+          <h3>Reformas Integrales</h3>
+          <p>Renovación completa de viviendas y locales: demolición, albañilería, acabados y llave en mano.</p>
+        </article>
+        <article class="service-card">
+          <div class="service-icon" aria-hidden="true">🚿</div>
+          <h3>Reformas de Baños</h3>
+          <p>Baños modernos y funcionales: alicatados, platos de ducha, mamparas y grifería de diseño.</p>
+        </article>
+        <article class="service-card">
+          <div class="service-icon" aria-hidden="true">🍳</div>
+          <h3>Reformas de Cocinas</h3>
+          <p>Cocinas a medida con mobiliario, encimeras y electrodomésticos integrados.</p>
+        </article>
+        <article class="service-card">
+          <div class="service-icon" aria-hidden="true">⚡</div>
+          <h3>Fontanería y Electricidad</h3>
+          <p>Instalaciones nuevas, certificaciones y adaptación a normativa vigente.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROYECTOS ============ -->
+  <section class="section projects" id="proyectos">
+    <div class="container">
+      <header class="section-header">
+        <h2>Proyectos</h2>
+        <p>Reformas integrales realizadas. Desliza para comparar el antes y el después.</p>
+      </header>
+
+      <div id="projectFilters" class="project-filters" role="tablist" aria-label="Filtrar proyectos"></div>
+      <p id="projectsStatus" class="projects-status" role="status" aria-live="polite">Cargando proyectos…</p>
+      <div id="projectsGrid" class="projects-grid"></div>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIOS ============ -->
+  <section class="section testimonials" id="testimonios">
+    <div class="container">
+      <header class="section-header">
+        <h2>Lo que dicen nuestros clientes</h2>
+      </header>
+
+      <div class="testimonials-grid">
+        <blockquote class="testimonial">
+          <div class="stars" aria-label="5 de 5 estrellas">★★★★★</div>
+          <p>"Cumplieron los plazos al día y dejaron la obra impecable. El baño quedó espectacular."</p>
+          <footer>— Laura M., Madrid</footer>
+        </blockquote>
+        <blockquote class="testimonial">
+          <div class="stars" aria-label="5 de 5 estrellas">★★★★★</div>
+          <p>"Un único interlocutor para todo. Presupuesto claro y sin sorpresas finales."</p>
+          <footer>— Carlos R., Pozuelo</footer>
+        </blockquote>
+        <blockquote class="testimonial">
+          <div class="stars" aria-label="5 de 5 estrellas">★★★★★</div>
+          <p>"Profesionales, limpios y puntuales. Repetiré para la cocina sin dudarlo."</p>
+          <footer>— Ana G., Alcobendas</footer>
+        </blockquote>
+      </div>
+
+      <div class="trust-points">
+        <div class="trust-point"><span>📋</span><strong>Presupuesto sin compromiso</strong></div>
+        <div class="trust-point"><span>🛡️</span><strong>Garantía por contrato</strong></div>
+        <div class="trust-point"><span>👷</span><strong>Profesionales cualificados</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACTO ============ -->
+  <section class="section contact" id="contacto">
+    <div class="container contact-grid">
+      <div class="contact-info">
+        <h2>Solicita tu presupuesto gratis</h2>
+        <p>Cuéntanos tu proyecto y te respondemos en menos de 24 horas.</p>
+        <ul class="contact-details">
+          <li><span>📞</span> <a href="tel:+34912345678">+34 912 345 678</a></li>
+          <li><span>✉️</span> <a href="mailto:info@reformasjoaquin.es">info@reformasjoaquin.es</a></li>
+          <li><span>🕐</span> Lunes a Viernes · 9:00 – 19:00</li>
+        </ul>
+      </div>
+
+      <form class="contact-form" id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="name">Nombre</label>
+            <input type="text" id="name" name="name" placeholder="Tu nombre" required />
+            <small class="error-msg" id="nameError"></small>
+          </div>
+          <div class="form-field">
+            <label for="phone">Teléfono</label>
+            <input type="tel" id="phone" name="phone" placeholder="+34 600 000 000" required />
+            <small class="error-msg" id="phoneError"></small>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="reforma">Tipo de reforma</label>
+          <select id="reforma" name="reforma" required>
+            <option value="">Selecciona una opción</option>
+            <option>Reforma integral</option>
+            <option>Reforma de baño</option>
+            <option>Reforma de cocina</option>
+            <option>Fontanería / Electricidad</option>
+            <option>Otro</option>
+          </select>
+          <small class="error-msg" id="reformaError"></small>
+        </div>
+        <div class="form-field">
+          <label for="message">Mensaje</label>
+          <textarea id="message" name="message" rows="4" placeholder="Cuéntanos tu proyecto..." required></textarea>
+          <small class="error-msg" id="messageError"></small>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Enviar solicitud</button>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="logo-mark">RJ</span>
+        <span>Reformas Joaquín</span>
+      </div>
+      <p class="footer-copy">© <span id="year"></span> Reformas Joaquín. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <a href="#contacto" class="floating-cta" aria-label="Solicitar presupuesto">💬</a>
+
+  <script src="script.js"></script>
+</body>
+</html>
