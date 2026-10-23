@@ -1,23 +1,25 @@
 # AGENTS.md
 
-Static single-page website for "Reformas Joaquín" (home renovation company).
+Sitio web estático de una sola página para "Reformas Joaquín" (empresa de reformas).
 
 ## Stack
-- Plain HTML5 / CSS3 / vanilla JS. No build step, no dependencies, no package manager.
-- Three files: `index.html`, `style.css`, `script.js`. Edit directly; no compilation.
+- HTML5, CSS3 y JavaScript puro. Sin build, sin dependencias, sin gestor de paquetes.
+- Tres archivos: `index.html`, `style.css`, `script.js`. Se editan directamente, sin compilación.
 
-## Verification
-- Serve locally to avoid CORS: `python -m http.server 8000` or `npx serve .`, then open `http://localhost:8000`.
-- No test/lint/typecheck commands exist.
-- JS is unminified and loaded via `<script src="script.js">` at end of body; keep it that way.
+## Verificación
+- Servir localmente para evitar CORS: `python -m http.server 8000` o `npx serve .`, luego abrir `http://localhost:8000`.
+- No hay comandos de test, lint ni typecheck.
+- El JS no está minificado y se carga con `<script src="script.js">` al final del body; mantener así.
 
-## Conventions
-- All copy is in Spanish; keep language consistent.
-- CSS uses custom properties in `:root` (`--accent`, etc.); prefer variables over hardcoded colors.
-- Images are remote Unsplash URLs; keep `loading="lazy"` on below-fold images.
-- Before/after comparators (`.ba-compare`) are initialized by class in `script.js`; do not add fixed IDs.
-- Project filtering uses `.filter-btn` + `data-filter`/`data-category`; keep categories in sync between HTML and JS.
+## Convenciones
+- Todos los textos de la interfaz en español.
+- El CSS usa variables personalizadas en `:root` (`--accent`, etc.); preferir variables sobre colores fijos.
+- Las imágenes son URLs remotas de Unsplash; mantener `loading="lazy"` en imágenes below-fold.
+- Los comparadores antes/después (`.ba-compare`) se inicializan por clase en `script.js`; no añadir IDs fijos.
+- El filtrado de proyectos usa `.filter-btn` + `data-filter`/`data-category`; mantener categorías sincronizadas entre HTML y JS.
+- La calculadora de presupuesto: extras dinámicos por tipo de reforma (EXTRAS_BY_TYPE en script.js). Precios y multiplicadores de calidad pendientes (ver MEMORY.md).
+- El visualizador 3D: CSS 3D puro, clases `is-*` (escenario), `has-*` (extras), `q-*` (calidad). Sin dependencias.
 
-## Working notes
-- Make small, focused edits; do not rewrite working code.
-- Summarize changes at the end.
+## Notas de trabajo
+- Hacer cambios pequeños y enfocados; no reescribir código que ya funciona.
+- Resumir los cambios al final.

@@ -94,54 +94,62 @@
         <h2>Calcula tu presupuesto</h2>
         <p>Estimación orientativa en menos de un minuto. Sin compromiso.</p>
       </header>
-      <form class="budget-form" id="budgetForm" novalidate>
-        <div class="form-row">
-          <div class="form-field">
-            <label for="b-tipo">Tipo de reforma</label>
-            <select id="b-tipo" required>
-              <option value="">Selecciona una opción</option>
-              <option value="integral">Reforma integral</option>
-              <option value="bano">Reforma de baño</option>
-              <option value="cocina">Reforma de cocina</option>
-              <option value="salon">Reforma de salón</option>
-              <option value="terraza">Reforma de terraza</option>
-            </select>
-            <small class="error-msg" id="b-tipoError"></small>
+      <div class="budget-layout">
+        <!-- Columna izquierda: controles -->
+        <div class="budget-controls">
+          <form class="budget-form" id="budgetForm" novalidate>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="b-tipo">Tipo de reforma</label>
+                <select id="b-tipo" required>
+                  <option value="">Selecciona una opción</option>
+                  <option value="integral">Reforma integral</option>
+                  <option value="bano">Reforma de baño</option>
+                  <option value="cocina">Reforma de cocina</option>
+                  <option value="salon">Reforma de salón</option>
+                  <option value="terraza">Reforma de terraza</option>
+                </select>
+                <small class="error-msg" id="b-tipoError"></small>
+              </div>
+              <div class="form-field">
+                <label for="b-m2">Superficie (m²)</label>
+                <input type="number" id="b-m2" min="1" step="1" placeholder="Ej. 60" required />
+                <small class="error-msg" id="b-m2Error"></small>
+              </div>
+            </div>
+            <div class="form-field">
+              <label for="b-calidad">Calidad de acabados</label>
+              <select id="b-calidad" required>
+                <option value="basica">Estándar</option>
+                <option value="media" selected>Media</option>
+                <option value="alta">Premium</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <span class="form-label">Extras</span>
+              <div id="budgetExtras" class="budget-extras"></div>
+            </div>
+            <div class="budget-result" id="budgetResult" hidden aria-live="polite">
+              <p class="budget-result-label">Estimación aproximada</p>
+              <p class="budget-result-value" id="budgetValue">—</p>
+              <p class="budget-result-note">Precio orientativo. El presupuesto final se ajusta tras visita técnica. Sin compromiso.</p>
+              <button type="button" class="btn btn-ghost btn-block" id="budgetUseBtn">Solicitar presupuesto con esta estimación</button>
+            </div>
+          </form>
+        </div>
+        <!-- Columna derecha: visualizador -->
+        <div class="budget-visual">
+          <div class="budget-scene" id="budgetScene" aria-hidden="true">
+            <canvas id="budgetCanvas"></canvas>
           </div>
-          <div class="form-field">
-            <label for="b-m2">Superficie (m²)</label>
-            <input type="number" id="b-m2" min="1" step="1" placeholder="Ej. 60" required />
-            <small class="error-msg" id="b-m2Error"></small>
-          </div>
+          <div class="budget-badges" id="budgetBadges"></div>
         </div>
-        <div class="form-field">
-          <label for="b-calidad">Calidad de acabados</label>
-          <select id="b-calidad" required>
-            <option value="basica">Básica</option>
-            <option value="media" selected>Media</option>
-            <option value="alta">Alta</option>
-          </select>
-        </div>
-        <div class="form-field">
-          <span class="form-label">Extras</span>
-          <div class="budget-extras">
-            <label><input type="checkbox" value="fontaneria" /> Fontanería nueva</label>
-            <label><input type="checkbox" value="electricidad" /> Electricidad nueva</label>
-            <label><input type="checkbox" value="pintura" /> Pintura completa</label>
-            <label><input type="checkbox" value="demolicion" /> Demolición y retirada</label>
-          </div>
-        </div>
-        <button type="submit" class="btn btn-primary btn-lg btn-block">Calcular estimación</button>
-        <div class="budget-result" id="budgetResult" hidden aria-live="polite">
-          <p class="budget-result-label">Estimación aproximada</p>
-          <p class="budget-result-value" id="budgetValue">—</p>
-          <p class="budget-result-note">Precio orientativo. El presupuesto final se ajusta tras visita técnica. Sin compromiso.</p>
-          <button type="button" class="btn btn-ghost btn-block" id="budgetUseBtn">Solicitar presupuesto con esta estimación</button>
-        </div>
-      </form>
+      </div>
     </div>
   </section>
 
+  <!-- Three.js (CDN, UMD) -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
   <!-- ============ PROYECTOS ============ -->
   <section class="section projects" id="proyectos">
     <div class="container">
